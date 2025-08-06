@@ -6,10 +6,117 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+  output   = "generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  ADMIN
+  USER
+  TEKNISI
+}
+
+
+
+model User {
+  id  Int @id @default(autoincrement())
+  username String  @db.VarChar(100)
+  password String @db.VarChar(100)
+  name String @db.VarChar(100)
+  email String @db.VarChar(100)
+  token String? @db.VarChar(100)
+  role     Role? 
+
+  user_task Tasks[]
+  user_logs Log_solve[]
+  @@map("users")
+}
+
+
+model Infrastructure_type {
+  id  Int @id @default(autoincrement())
+  infrastructure_type String @db.VarChar(50)
+
+  infrastructures Detail_infrastructure[]
+
+  @@map("infrastructure_type")
+}
+
+model UPT { 
+  id  Int @id @default(autoincrement())
+  upt_name String @db.VarChar(100)
+
+  infrastructures Detail_infrastructure[]
+
+  @@map("upt")
+}
+model Anomaly {
+  id  Int @id @default(autoincrement())
+  anomaly_category String @db.VarChar(100)
+  anomaly_task Tasks[]
+
+  @@map("anomaly")
+}
+
+model Detail_infrastructure {
+  id  Int @id @default(autoincrement())
+  infrastructure_name String @db.VarChar(100)
+  longitude Float
+  latitude Float 
+
+  id_upt Int
+  id_infrastructure Int
+
+  upt  UPT   @relation(fields: [id_upt], references: [id])
+  infrastructure_type Infrastructure_type @relation(fields :[id_infrastructure], references: [id])
+
+
+  infrastructure_task Tasks[]
+
+  @@map("detail_infrastructure")
+}
+
+
+enum Status {
+  OPEN
+  ON_PROGRESS
+  CLOSED
+}
+model Tasks {
+  id Int @id @default(autoincrement())
+  tasks String @db.VarChar(255)
+  status Status
+  id_infrastructure_detail Int
+  id_anomaly Int
+  id_user Int
+
+  infrastructure_detail Detail_infrastructure  @relation(fields :[id_infrastructure_detail], references: [id])
+  anomaly Anomaly  @relation(fields :[id_anomaly], references: [id])
+  user User  @relation(fields :[id_user], references: [id])
+
+  logs Log_solve[]
+  
+  @@map("tasks")
+}
+
+model Log_solve {
+  id Int @id @default(autoincrement())
+  note            String?   @db.Text
+  created_at DateTime  @default(now())
+  id_task Int
+  id_user Int
+  status Status
+
+  task Tasks @relation(fields:[id_task], references:[id])
+  user User @relation(fields:[id_user],references:[id])
+
+  @@map("log_solve")
+}
+
+
+
+
