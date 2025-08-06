@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "dev": "npx nodemon ./src/main.ts",
+    "dev": "tsx ./src/main.ts",
     "test": "jest -i"
   },
   "keywords": [],
@@ -34,10 +34,10 @@
     "eslint": "^9.32.0",
     "globals": "^16.3.0",
     "jest": "^30.0.5",
-    "nodemon": "^3.1.10",
     "prisma": "^6.13.0",
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.0"
   }
