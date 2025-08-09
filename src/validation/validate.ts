@@ -1,9 +1,7 @@
-// file validate disini untuk memvalidasi schema dengan request yang dikirimkan
-
+import Joi from "joi";
 import { ResponseError } from "../error/response-error";
 
-const validate = (schema: any, request: any) => {
-  // validate disini berasal dari joi
+const validate = <T>(schema: Joi.ObjectSchema<T>, request: unknown): T => {
   const result = schema.validate(request, {
     abortEarly: false,
     allowUnknown: false,
