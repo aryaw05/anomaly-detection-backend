@@ -7,7 +7,8 @@ import { ResponseError } from "../error/response-error.js";
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
 import { prisma } from "../application/database.js";
-import { User, UserRegister, UserLogin } from "../types/auth-types.js";
+import type { UserRegister, UserLogin } from "../types/auth-types.js";
+import type { User } from "../types/user-types.js";
 
 const register = async (request: UserRegister): Promise<User> => {
   // validasi request
