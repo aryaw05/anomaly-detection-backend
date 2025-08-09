@@ -1,6 +1,6 @@
 import { prisma } from "../application/database.js";
 import { Request, Response, NextFunction } from "express";
-import { UserData } from "../types/auth-types.js";
+import type { UserData } from "../types/user-types.js";
 
 // extend express request interface
 declare global {
