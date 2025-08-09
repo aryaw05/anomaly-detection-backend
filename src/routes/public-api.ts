@@ -1,8 +1,11 @@
 import express from "express";
-import userController from "../controller/user-controller.js";
+import { authMiddleware } from "../middleware/auth-middleware.js";
+import authController from "../controller/auth-controller.js";
 const publicRouter = express.Router();
 
-publicRouter.post("/api/users", userController.register);
-publicRouter.post("/api/users/login", userController.login);
+// auth
+publicRouter.post("/api/auth/register", authController.register);
+publicRouter.post("/api/auth/login", authController.login);
+publicRouter.post("/api/auth/logout", authMiddleware, authController.logout);
 
 export { publicRouter };
