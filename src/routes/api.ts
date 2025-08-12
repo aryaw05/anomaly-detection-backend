@@ -5,6 +5,7 @@ import {
 } from "../middleware/auth-middleware.js";
 import authController from "../controller/auth-controller.js";
 import userController from "../controller/user-controller.js";
+import tasksController from "../controller/tasks-controller.js";
 const protectedRouter = express.Router();
 
 // auth protected routes
@@ -20,5 +21,10 @@ protectedRouter.use("/api/admin", adminMiddleware);
 protectedRouter.get("/api/admin/users", userController.getAllUsers);
 protectedRouter.get("/api/admin/users/:id", userController.getUserById);
 protectedRouter.delete("/api/admin/users/:id", userController.deleteUser);
+
+// admin add tasks protected routes
+protectedRouter.use("/api/tasks", adminMiddleware);
+protectedRouter.post("/api/tasks/add", tasksController.add);
+protectedRouter.delete("/api/tasks/:id", tasksController.remove);
 
 export { protectedRouter };
