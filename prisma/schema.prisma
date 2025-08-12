@@ -93,6 +93,8 @@ model Tasks {
   id_infrastructure_detail Int
   id_anomaly Int
   id_user Int
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
 
   infrastructure_detail Detail_infrastructure  @relation(fields :[id_infrastructure_detail], references: [id])
   anomaly Anomaly  @relation(fields :[id_anomaly], references: [id])
