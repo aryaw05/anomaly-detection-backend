@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "dev": "tsx ./src/main.ts",
+    "dev": "tsx watch ./src/main.ts",
     "test": "jest -i"
   },
   "keywords": [],
