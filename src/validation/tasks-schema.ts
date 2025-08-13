@@ -11,4 +11,9 @@ const removeTaskValidation = joi.object({
   id_user: joi.number().integer().positive().required(),
   id: joi.number().integer().positive().required(),
 });
-export { addTaskValidatation, removeTaskValidation };
+
+const getTaskValidation = joi.object({
+  id_user: joi.number().integer().positive().required(),
+  id: joi.number().integer().positive().required(),
+});
+export { addTaskValidatation, removeTaskValidation, getTaskValidation };
