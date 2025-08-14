@@ -98,5 +98,5 @@ export default {
   add,
   remove,
   getDataById,
-  getAllData,
+  // getAllData,
 };

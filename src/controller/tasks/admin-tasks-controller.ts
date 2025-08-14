@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import tasksServices from "../../services/tasks/tasks-services";
+import tasksServices from "../../services/tasks/admin-tasks-services";
 
 const add = async (req: Request, res: Response, next: NextFunction) => {
   try {
