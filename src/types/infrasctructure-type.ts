@@ -4,6 +4,7 @@ export interface Infrastructure {
   latitude: number;
   longitude: number;
   infrastructure_task: {
+    id: number;
     status: string;
     tasks: string;
     created_at: Date;

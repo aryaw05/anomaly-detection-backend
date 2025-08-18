@@ -14,6 +14,7 @@ const getAllData = async (): Promise<Infrastructure[]> => {
       longitude: true,
       infrastructure_task: {
         select: {
+          id: true,
           status: true,
           tasks: true,
           created_at: true,
