@@ -6,6 +6,7 @@ import {
 import authController from "../controller/auth-controller.js";
 import userController from "../controller/user-controller.js";
 import tasksController from "../controller/tasks/admin-tasks-controller.js";
+import technicianTasksController from "../controller/tasks/technician-tasks-controller.js";
 const protectedRouter = express.Router();
 
 // auth protected routes
@@ -22,11 +23,18 @@ protectedRouter.get("/api/admin/users", userController.getAllUsers);
 protectedRouter.get("/api/admin/users/:id", userController.getUserById);
 protectedRouter.delete("/api/admin/users/:id", userController.deleteUser);
 
-// admin tasks protected routes
-// kurang update & getAll data
-protectedRouter.use("/api/tasks", adminMiddleware);
-protectedRouter.post("/api/tasks/add", tasksController.add);
-protectedRouter.delete("/api/tasks/:id", tasksController.remove);
-protectedRouter.get("/api/tasks/:id", tasksController.getDataById);
+// admin tasks routes
+protectedRouter.use("/api/admin/tasks", adminMiddleware);
+protectedRouter.post("/api/admin/tasks/add", tasksController.add);
+protectedRouter.delete("/api/admin/tasks/:id", tasksController.remove);
+protectedRouter.get("/api/admin/tasks/:id", tasksController.getDataById);
+protectedRouter.get("/api/admin/tasks", tasksController.getAllData);
+protectedRouter.patch("/api/admin/tasks/:id", tasksController.update);
 
+// technician tasks routes
+protectedRouter.use("/api/technician/tasks", authMiddleware);
+protectedRouter.patch(
+  "/api/technician/tasks/:id",
+  technicianTasksController.update
+);
 export { protectedRouter };
