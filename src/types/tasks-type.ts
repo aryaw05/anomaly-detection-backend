@@ -1,4 +1,5 @@
-export interface Tasks  {
+import { Status } from "@prisma/client";
+export interface Tasks {
   id: number;
   tasks: string;
   status: string;
@@ -28,4 +29,28 @@ export interface RemoveTask {
 export interface getTaskById {
   id: number;
   id_user: number;
+}
+
+export interface getAndFilterTask {
+  data: Tasks[];
+  paging: {
+    page: number;
+    total_item: number;
+    total_page: number;
+  };
+}
+
+export interface taskUpdate {
+  id: number;
+  status?: Status;
+  tasks?: string;
+}
+
+export interface taskStatusUpdate {
+  id: number;
+  note?: string;
+  status: Status;
+  infrastructure_detail: {
+    infrastructure_name: string;
+  };
 }
