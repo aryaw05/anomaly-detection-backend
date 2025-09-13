@@ -11,7 +11,7 @@ const protectedRouter = express.Router();
 
 // auth protected routes
 protectedRouter.use("/api/auth", authMiddleware);
-protectedRouter.post("/logout", authController.logout);
+protectedRouter.post("/api/auth/logout", authController.logout);
 
 protectedRouter.use("/api/users", authMiddleware);
 protectedRouter.get("/api/users/current", userController.getCurrentUser);
